@@ -3,15 +3,26 @@
 # @Time    : 2018/4/12 18:49
 # @Author  : Betafringe
 # @Site    : 
-# @File    : load_data.py
+# @File    : data.py
 # @Software: PyCharm
 import os
 import pymysql.cursors
 import pymysql
 import csv
 import pandas as pd
+import datetime
 
-def connectSQL(ip, port, user, password, db):  # pass
+
+def connectSQL(ip, port, user, password, db, lookup_id):
+    '''
+    :param ip:
+    :param port:
+    :param user:
+    :param password:
+    :param db:
+    :param lookup_id:
+    :return:
+    '''
     config = {
         'host': ip,
         'port': port,  # MySQL默认端口
@@ -27,13 +38,19 @@ def connectSQL(ip, port, user, password, db):  # pass
     cur = conn.cursor()
     # 执行sql语句
     try:
-        cur.execute('select * from user_info')
-        dataset = cur.fetchall()
+        cur.execute('select * from lead_poor where id = ' + lookup_id)
+        dataset = cur.fetchone()
     finally:
         cur.close()
         conn.close()
-    print(dataset)
-    return dataset
+    print("connect server!")
+    name = dataset[1]
+    per_num = dataset[2]
+    year = dataset[3]
+    age = datetime.datetime.now().year - int(dataset[4][6:10])
+    income = dataset[-9]
+    args = []
+    return name, per_num, year, age, income
 
 def loadcsv(path):
     dataset = ()
@@ -48,8 +65,3 @@ def load2pd(path):  # pass
     print("load csv as pandas dataframe successful!")
     # print(dataset)
     return dataset
-
-
-# filename = '../../data/csv/preprocessing_data.csv'
-# dataset = test.load2pd(filename)
-# sql = test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
