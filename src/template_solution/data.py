@@ -100,7 +100,6 @@ class SQL:
         cur = self.connect.cursor()
 
         try:
-            print("enter", sql)
             print(cur.execute(sql))
             # 提交到数据库执行
             self.connect.commit()
@@ -111,6 +110,19 @@ class SQL:
 
         # 关闭数据库连接
             #self.connect.close()
+
+    def get_id(self):
+        id_list = []
+        sql = 'select id from lead_poor'
+        cur = self.connect.cursor()
+        try:
+            cur.execute(sql)
+            data = cur.fetchall()
+        except (TypeError, pymysql.err.InternalError) as e:
+            print(e)
+        finally:
+             pass
+        return data
 
     def loadcsv(self, path):
         dataset = ()
@@ -128,11 +140,8 @@ class SQL:
         if self.connect is not None:
             self.connect.close()
 
-    # arg_id = input("id:")
-    # test = connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser', lookup_id=arg_id)
-# sql=SQL()
-# sql.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
-# data=sql.sql("892020")
-# sql.insert_sql(232,"ccc",123,12,123,123,1,32)
 
+sql = SQL()
+sql.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+sql.get_id()
 

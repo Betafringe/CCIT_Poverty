@@ -8,7 +8,7 @@
 import pandas as pd
 import datetime
 import math
-
+import random
 
 class Pre:
     def preprocessing_pd(self, df):
@@ -67,12 +67,15 @@ class ComputeCredit(object):
         return per_weights*value
 
     def year_part(self, year_weights):
-        if int(self.year) == 2017 or 2018:
-            value = 1
-        elif int(self.year) > datetime.datetime.now().year:
-            value = 0
+        if self.year is int:
+            if int(self.year) == 2017 or 2018:
+                value = 1
+            elif int(self.year) > datetime.datetime.now().year:
+                value = 0
+            else:
+                value = 2018-int(self.year)
         else:
-            value = 2018-int(self.year)
+            value = 1
         return value*year_weights
 
     def age_part(self, age_weights):
@@ -83,15 +86,14 @@ class ComputeCredit(object):
         return value*age_weights
 
     def income_part(self, income_weights):
-        ratio = self.income/self.per
-        if ratio < 1:
-            value = 2
-        elif 1 <= ratio < 1.6:
+        if self.income < 1000:
+            value = 1
+        elif 1000 <= self.income < 4000:
             value = 3
-        elif 1.6 <= ratio < 3:
+        elif 3500 <= self.income < 100000:
             value = 4
         else:
-            value = 1
+            value = 2
         return value*income_weights
 
     def lvl_part(self, lvl_weights):
@@ -148,14 +150,14 @@ def add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_
     character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.3) + single_user.age_part(0.2*0.2) \
                 + single_user.lvl_part(0.2*0.1) + single_user.sex_part(0.2*0.2)
 
-    appointment = single_user.income_part(0.7*0.5) + single_user.sex_part(0.3*0.5)
+    appointment = single_user.income_part(0.07) + single_user.sex_part(0.03) + 0.35
 
     history = single_user.year_part(0.6*0.5) + single_user.income_part(0.2*0.5)
 
-    stickiness = single_user.income_part(0.1*0.35) + single_user.count_part(0.6*0.35) + single_user.year_part(0.3*0.35)
+    stickiness = single_user.count_part(0.03) + single_user.year_part(0.04) + single_user.count_part(0.03) + 0.35
 
-    relations = single_user.sex_part(0.1*0.333) + single_user.per_part(0.7*0.333) + single_user.income_part(0.2*0.333)
-
-    total_credit = int((character + appointment + history + stickiness + relations)*850/5 + 50)
+    relations = single_user.sex_part(0.01) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.35
+    random_bias = int(random.randint(5, 50))
+    total_credit = int((character + appointment + history + stickiness + relations)*850/5) + random_bias
 
     return total_credit, character, appointment, history, stickiness, relations

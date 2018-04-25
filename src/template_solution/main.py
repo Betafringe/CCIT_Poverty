@@ -8,6 +8,7 @@
 
 from data import SQL
 from analyse import ComputeCredit, add_all
+import datetime
 
 
 def handle_sql(input_id):
@@ -34,17 +35,23 @@ def handle_dataframes(data, arg_id):
 
 def main():
     path = '../../data/csv/preprocessing_data.csv'
-    user_input = str(input())
+
     connect = SQL()
     connect.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
-    user_data = connect.sql(user_input)
-    print('user_info:', user_data)
-    after_data = add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
-            user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
-    print('score:', after_data)
-    connect.insert_sql(int(user_input), user_data[0], after_data[0], after_data[1], after_data[2],
+    list = connect.get_id()
+    starttime = datetime.datetime.now()
+    print(list)
+    for i in list:
+        ID = str(i[-1])
+        user_data = connect.sql(ID)
+        print('user_info:', user_data)
+        after_data = add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
+             user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
+        print('score:', after_data)
+        connect.insert_sql(int(ID), user_data[0], after_data[0], after_data[1], after_data[2],
                        after_data[3], after_data[4], after_data[5])
-
+    stoptime = datetime.datetime.now()
+    print("used time:", stoptime-starttime)
 
 if __name__ == '__main__':
     main()
