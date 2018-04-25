@@ -44,19 +44,18 @@ class Pre:
 
 
 class ComputeCredit(object):
-    def __init__(self, per, year, age, income):
+    def __init__(self, per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
         self.per = per
         self.year = year
         self.age = age
         self.income = income
-        # self.level = level
-
-    def sigmoid(self, inX):
-        return 1.0 / (1 + math.exp(-inX))
-
-    def normal_distribution(self, X):
-        PI = 3.141
-        return math.exp(1)**(-(X**2)/2)*(1.0/2*PI)**0.5
+        self.lvl = lvl
+        self.count = count
+        self.sex = sex
+        self.landsize = landsize
+        self.sale_income = sale_income
+        self.out_poverty = out_poverty
+        self.industrial_scale = industrial_scale
 
     def per_part(self, per_weights):
         if self.per < 3:
@@ -70,15 +69,17 @@ class ComputeCredit(object):
     def year_part(self, year_weights):
         if int(self.year) == 2017 or 2018:
             value = 1
+        elif int(self.year) > datetime.datetime.now().year:
+            value = 0
         else:
-            value = 2017-int(self.year)
+            value = 2018-int(self.year)
         return value*year_weights
 
     def age_part(self, age_weights):
-        if self.age < 20 or self.age > 50:
+        if self.age < 20 or self.age > 45:
             value = 2
         else:
-            value = (self.age-20) * 0.2
+            value = (self.age-20) * 0.32 + 2
         return value*age_weights
 
     def income_part(self, income_weights):
@@ -93,10 +94,68 @@ class ComputeCredit(object):
             value = 1
         return value*income_weights
 
+    def lvl_part(self, lvl_weights):
+        if self.lvl == "一般农户" or "低保户" or "低保贫苦户":
+            value = 1
+        elif self.lvl == "县级" or "区级" or "县":
+            value = 2
+        elif self.lvl == "省级" or "省级示范" or "省":
+            value = 3
+        else:
+            value = 4
+        return value*lvl_weights
 
-def add_all(per, year, age, income):
-    test = ComputeCredit(per, year, age, income)
-    is_full = test.year_part(0.5)
-    ###要显示别的部分
-    total_credit = int(230*(test.per_part(0.2) + test.year_part(0.1) + test.age_part(0.4) + test.income_part(0.3)))
-    return total_credit
+    def count_part(self, count_weights):
+        if self.count/39 < 0.5:
+            value = 3
+        else:
+            value = 7
+        return value*count_weights
+
+    def sex_part(self, sex_weights):
+        if self.sex == 0:
+            value = 7
+        else:
+            value = 3
+        return value*sex_weights
+
+    def landsize(self, landsize_weights):
+        pass
+
+    def sale_income(self, sale_income_weights):
+        pass
+
+    def out_poverty(self, out_poverty_weights):
+        if self.out_poverty == "否":
+            value = 0
+        else:
+            value = 10
+        return value*out_poverty_weights
+
+
+def sigmoid(X):
+    return 1.0 / (1 + math.exp(-X))
+
+
+def normal_distribution(X):
+    PI = 3.141
+    return math.exp(1) ** (-(X ** 2) / 2) * (1.0 / 2 * PI) ** 0.5
+
+
+def add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
+    single_user = ComputeCredit(per, year, age, income, lvl,
+                                count, sex, landsize, sale_income, out_poverty, industrial_scale)
+    character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.3) + single_user.age_part(0.2*0.2) \
+                + single_user.lvl_part(0.2*0.1) + single_user.sex_part(0.2*0.2)
+
+    appointment = single_user.income_part(0.7*0.5) + single_user.sex_part(0.3*0.5)
+
+    history = single_user.year_part(0.6*0.5) + single_user.income_part(0.2*0.5)
+
+    stickiness = single_user.income_part(0.1*0.35) + single_user.count_part(0.6*0.35) + single_user.year_part(0.3*0.35)
+
+    relations = single_user.sex_part(0.1*0.333) + single_user.per_part(0.7*0.333) + single_user.income_part(0.2*0.333)
+
+    total_credit = int((character + appointment + history + stickiness + relations)*850/5 + 50)
+
+    return total_credit, character, appointment, history, stickiness, relations

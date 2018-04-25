@@ -6,16 +6,17 @@
 # @File    : main.py
 # @Software: PyCharm
 
-from data import connectSQL, load2pd
+from data import SQL
 from analyse import ComputeCredit, add_all
-import pandas as pd
 
 
-def handle_sql(arg_id):
-    model = connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser', lookup_id=arg_id)
-    credit = add_all(model[1], model[2], model[3], model[4])
+def handle_sql(input_id):
+    model = SQL.sql(input_id)
+    credit = add_all(model[1], model[2], model[3], model[4], model[5],
+                     model[6], model[7], model[8], model[9], model[10])
     # print(model)
-    print(credit, model[0])
+    print(model[0], credit)
+    return model[0], credit
 
 
 def handle_dataframes(data, arg_id):
@@ -33,9 +34,16 @@ def handle_dataframes(data, arg_id):
 
 def main():
     path = '../../data/csv/preprocessing_data.csv'
-    id = str(input())
-    dataframe = load2pd(path)
-    handle_sql(arg_id=id)
+    user_input = str(input())
+    connect = SQL()
+    connect.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+    user_data = connect.sql(user_input)
+    print('user_info:', user_data)
+    after_data = add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
+            user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
+    print('score:', after_data)
+    connect.insert_sql(int(user_input), user_data[0], after_data[0], after_data[1], after_data[2],
+                       after_data[3], after_data[4], after_data[5])
 
 
 if __name__ == '__main__':
