@@ -6,10 +6,10 @@
 # @File    : main.py
 # @Software: PyCharm
 
-from data import SQL
-from analyse import ComputeCredit, add_all
+from data import LookupSQL, UpdateSQL
+from analyse import ComputeCredit, init_add_all
 import datetime
-
+import config
 
 def handle_sql(input_id):
     model = SQL.sql(input_id)
@@ -34,24 +34,36 @@ def handle_dataframes(data, arg_id):
 
 
 def main():
-    path = '../../data/csv/preprocessing_data.csv'
+    startime = datetime.datetime.now()
+# 原始数据库参数
+    origin_sql_connection = LookupSQL()
+    origin_sql_settings = config.origin_sql_settings()
+    origin_sql_connection.connectSQL(ip=origin_sql_settings['ip'], port=origin_sql_settings['port'],
+                                     user=origin_sql_settings['user'],
+                                     password=origin_sql_settings['password'], db=origin_sql_settings['db'])
+# 更新数据库参数
+    update_sql_connection = UpdateSQL()
+    update_sql_settings = config.update_sql_settings()
+    update_sql_connection.connectSQL(ip=update_sql_settings['ip'], port=update_sql_settings['port'],
+                                     user=update_sql_settings['user'],
+                                     password=update_sql_settings['password'], db=update_sql_settings['db'])
 
-    connect = SQL()
-    connect.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
-    list = connect.get_id()
-    starttime = datetime.datetime.now()
-    print(list)
-    for i in list:
-        ID = str(i[-1])
-        user_data = connect.sql(ID)
+# 获取用户 ID
+    all_user_list = origin_sql_connection.get_id()
+    print(all_user_list)
+    
+    for i in all_user_list:
+        user_id_ = str(i[-1])
+        user_data = origin_sql_connection.sql(user_id_)
         print('user_info:', user_data)
-        after_data = add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
+        after_data = init_add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
              user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
         print('score:', after_data)
-        connect.insert_sql(int(ID), user_data[0], after_data[0], after_data[1], after_data[2],
-                       after_data[3], after_data[4], after_data[5])
+        update_sql_connection.insert_sql(int(user_id_), user_data[0], after_data[0], after_data[1], after_data[2],
+                    after_data[3], after_data[4], after_data[5])
     stoptime = datetime.datetime.now()
-    print("used time:", stoptime-starttime)
+    print("used time:", stoptime-startime)
+
 
 if __name__ == '__main__':
     main()

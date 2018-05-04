@@ -8,15 +8,13 @@
 import os
 import pymysql.cursors
 import pymysql
-import csv
-import pandas as pd
 import datetime
+import config
 
-
-class SQL:
+class LookupSQL:
     def __init__(self):
         self.connect = None
-        self.config=None
+        self.config = None
 
     def connectSQL(self, ip=None, port=None, user=None, password=None, db=None):
         '''
@@ -27,21 +25,25 @@ class SQL:
         :param db:
         :return:
         '''
-        if self.config==None:
+        if self.config == None:
             self.config = {
             'host': ip,
             'port': port,  # MySQL默认端口
             'user': user,  # mysql默认用户名
             'passwd': password,
             'db': db,  # 数据库
-            'charset': 'utf8', #数据库编码
-            # 'cursorclass': pymysql.cursors.DictCursor,
+            'charset': 'utf8',  #数据库编码
              }
 
         # 创建连接
         self.connect = pymysql.connect(**self.config)
 
     def sql(self, lookup_id):
+        '''
+
+        :param lookup_id:
+        :return: list
+        '''
         if self.connect is None:
             self.connectSQL()
         cur = self.connect.cursor()
@@ -53,8 +55,6 @@ class SQL:
             print(e)
         finally:
              cur.close()
-        #     conn.close()
-        #print("connect server!")
         if dataset is None:
             print("错误ID")
         else:
@@ -70,15 +70,13 @@ class SQL:
             lvl = dataset[5]
 
             def get_sex(x):  # is_sex==0 女  is_sex==1 男
-                if x == "X" or "x":
-                    is_sex = 1
-                elif int(x) % 2 == 0:
+                if int(x) % 2 == 1:
                     is_sex = 1
                 else:
                     is_sex = 0
                 return is_sex
 
-            sex = get_sex(dataset[4][-1])
+            sex = get_sex(dataset[4][-2])
             landsize = dataset[9]
             sale_income = dataset[12]
             out_poverty = dataset[-7]
@@ -88,8 +86,43 @@ class SQL:
                 landsize, sale_income, industrial_scale = 0, 0, 0
             else:
                 landsize, sale_income, industrial_scale = 1, 1, 1
-            # print(name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty)
-            return name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale
+            print(name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty)
+            return name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty,\
+                   industrial_scale
+
+    def get_id(self):
+        sql = 'select id from lead_poor'
+        cur = self.connect.cursor()
+        try:
+            cur.execute(sql)
+            data = cur.fetchall()
+        except (TypeError, pymysql.err.InternalError) as e:
+            print(e)
+        finally:
+             pass
+        return data
+
+    def __del__(self):
+        if self.connect is not None:
+            self.connect.close()
+
+
+class UpdateSQL:
+    def __init__(self):
+        self.connect = None
+        self.config = None
+
+    def connectSQL(self, ip=None, port=None, user=None, password=None, db=None):
+        if self.config == None:
+            self.config = {
+            'host': ip,
+            'port': port,  # MySQL默认端口
+            'user': user,  # mysql默认用户名
+            'passwd': password,
+            'db': db,  # 数据库
+            'charset': 'utf8',  #数据库编码
+             }
+        self.connect = pymysql.connect(**self.config)
 
     def insert_sql(self, id_, name_, score_, character_, appointment_, history_, stickiness_, relations_):
         # SQL 插入语句
@@ -107,41 +140,18 @@ class SQL:
             # 如果发生错误则回滚
             print(e)
             self.connect.rollback()
-
-        # 关闭数据库连接
-            #self.connect.close()
-
-    def get_id(self):
-        id_list = []
-        sql = 'select id from lead_poor'
-        cur = self.connect.cursor()
-        try:
-            cur.execute(sql)
-            data = cur.fetchall()
-        except (TypeError, pymysql.err.InternalError) as e:
-            print(e)
-        finally:
-             pass
-        return data
-
-    def loadcsv(self, path):
-        dataset = ()
-        with open(path, 'r') as file:
-            csv2file = csv.reader(file)
-            for data_item in csv2file:
-                dataset.append(data_item)
-        return dataset
-
-    def load2pd(self, path):  # pass
-        dataset = pd.read_csv(path)
-        return dataset
+            self.connect.close()
 
     def __del__(self):
         if self.connect is not None:
             self.connect.close()
 
 
-sql = SQL()
-sql.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
-sql.get_id()
 
+# select_test = LookupSQL()
+# select_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+# select_test.sql('1313985')
+#
+# insert_test = UpdateSQL()
+# insert_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+# insert_test.insert_sql(1, 'abcd', 299, 1, 1, 1, 1, 1)

@@ -144,7 +144,7 @@ def normal_distribution(X):
     return math.exp(1) ** (-(X ** 2) / 2) * (1.0 / 2 * PI) ** 0.5
 
 
-def add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
+def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
     single_user = ComputeCredit(per, year, age, income, lvl,
                                 count, sex, landsize, sale_income, out_poverty, industrial_scale)
     character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.3) + single_user.age_part(0.2*0.2) \
@@ -161,3 +161,7 @@ def add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_
     total_credit = int((character + appointment + history + stickiness + relations)*850/5) + random_bias
 
     return total_credit, character, appointment, history, stickiness, relations
+
+
+def update(user_id, para):
+    pass
