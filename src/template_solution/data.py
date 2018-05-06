@@ -10,7 +10,9 @@ import pymysql.cursors
 import pymysql
 import datetime
 import config
-
+'''
+include LookupSQL and updateSQL class
+'''
 class LookupSQL:
     def __init__(self):
         self.connect = None
@@ -77,18 +79,17 @@ class LookupSQL:
                 return is_sex
 
             sex = get_sex(dataset[4][-2])
-            landsize = dataset[9]
+            land_size = dataset[9]
             sale_income = dataset[12]
             out_poverty = dataset[-7]
             industrial_scale = dataset[-11]
-            # print(name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty)
-            if landsize or sale_income or industrial_scale is None:
-                landsize, sale_income, industrial_scale = 0, 0, 0
+            if land_size or sale_income or industrial_scale is None:
+                land_size, sale_income, industrial_scale = 0, 0, 0
             else:
-                landsize, sale_income, industrial_scale = 1, 1, 1
-            print(name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty)
-            return name, per_num, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty,\
-                   industrial_scale
+                land_size, sale_income, industrial_scale = 1, 1, 1
+            print(name, per_num, year, age, income, lvl, count, sex,
+                  land_size, sale_income, out_poverty, industrial_scale)
+            return name, per_num, year, age, income, lvl, count, sex, land_size, sale_income, out_poverty, industrial_scale
 
     def get_id(self):
         sql = 'select id from lead_poor'
@@ -147,7 +148,9 @@ class UpdateSQL:
             self.connect.close()
 
 
-
+'''
+test function code
+'''
 # select_test = LookupSQL()
 # select_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
 # select_test.sql('1313985')

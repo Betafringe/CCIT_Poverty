@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f42babbf-533c-4add-bda9-6c4cd98b8b66" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/template_solution/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jupyter_ipynb/preprocessing.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Jupyter_ipynb/preprocessing_data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Jupyter_ipynb/preprocessing_data.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/template_solution/analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/analyse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template_solution/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/template_solution/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/template_solution/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/main.py" afterDir="false" />
     </list>
@@ -22,7 +19,7 @@
     <SUITE FILE_PATH="coverage/__CreditAnalyse$compute_credit.coverage" NAME="compute_credit Coverage Results" MODIFIED="1524325175938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$randomforest_test.coverage" NAME="randomforest_test Coverage Results" MODIFIED="1522656281494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/function_test" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$cluster_t.coverage" NAME="cluster_t Coverage Results" MODIFIED="1523280075394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Jupyter_ipynb" />
-    <SUITE FILE_PATH="coverage/__CreditAnalyse$main.coverage" NAME="main Coverage Results" MODIFIED="1525424475847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
+    <SUITE FILE_PATH="coverage/__CreditAnalyse$main.coverage" NAME="main Coverage Results" MODIFIED="1525616379318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$loaddata_function_test.coverage" NAME="loaddata_function_test Coverage Results" MODIFIED="1525423414551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/CreditAnalyse$test_funciton.coverage" NAME="test_funciton Coverage Results" MODIFIED="1522157206413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CreditPovertyAnalyse/function_test" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$config.coverage" NAME="config Coverage Results" MODIFIED="1525422753828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Jupyter_ipynb" />
@@ -42,79 +39,53 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5317708">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="827">
-                  <caret line="117" column="23" lean-forward="true" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
-                  <folding>
-                    <element signature="e#155#164#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="connections.py" pinned="false" current-in-tab="false">
-            <entry file="file:///usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="689">
-                  <caret line="538" selection-start-line="538" selection-end-line="538" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/template_solution/config.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="32" selection-end-column="21" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="analyse.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="687">
-                  <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
-                  <folding>
-                    <element signature="e#158#177#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-            <entry file="file:///usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/__init__.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="337">
-                  <caret line="92" selection-start-line="92" selection-end-line="92" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/template_solution/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="833">
-                  <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
-                  <folding>
-                    <element signature="e#156#193#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="797">
+              <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+              <folding>
+                <element signature="e#155#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/template_solution/main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+              <folding>
+                <element signature="e#156#193#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/template_solution/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analyse.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="147" column="14" lean-forward="true" selection-start-line="147" selection-start-column="14" selection-end-line="147" selection-end-column="14" />
+              <folding>
+                <element signature="e#158#177#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -151,10 +122,10 @@
         <option value="$PROJECT_DIR$/src/template_solution/load_data.py" />
         <option value="$PROJECT_DIR$/src/template_solution/README.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/template_solution/config.py" />
-        <option value="$PROJECT_DIR$/src/template_solution/data.py" />
         <option value="$PROJECT_DIR$/src/template_solution/analyse.py" />
         <option value="$PROJECT_DIR$/src/template_solution/main.py" />
+        <option value="$PROJECT_DIR$/src/template_solution/data.py" />
+        <option value="$PROJECT_DIR$/src/template_solution/config.py" />
       </list>
     </option>
   </component>
@@ -168,8 +139,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="741" />
+    <option name="y" value="22" />
+    <option name="width" value="699" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -187,17 +160,6 @@
               <item name="__CreditAnalyse" type="b2602c69:ProjectViewProjectNode" />
               <item name="__CreditAnalyse" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="__CreditAnalyse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="__CreditAnalyse" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="csv" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="__CreditAnalyse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="__CreditAnalyse" type="462c0819:PsiDirectoryNode" />
-              <item name="Jupyter_ipynb" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="__CreditAnalyse" type="b2602c69:ProjectViewProjectNode" />
@@ -398,23 +360,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="9" />
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.3383058" side_tool="true" weight="0.20707597" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.66169417" visible="true" weight="0.19800995" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.66169417" visible="true" weight="0.24121211" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.264308" />
       <window_info anchor="bottom" id="Python Console" order="2" />
-      <window_info anchor="right" id="Terminal" order="5" weight="0.27630636" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4987593" visible="true" weight="0.0" />
+      <window_info anchor="right" id="Terminal" order="5" weight="0.16196057" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49840257" visible="true" weight="0.15208334" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" weight="0.32978156" />
-      <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49391553" weight="0.17541613" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.5012407" side_tool="true" visible="true" weight="0.0" />
-      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813533" weight="0.39854318" />
+      <window_info id="Structure" order="1" sideWeight="0.50159746" side_tool="true" visible="true" weight="0.15208334" />
+      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813533" weight="0.39800996" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -423,32 +383,33 @@
       <window_info anchor="right" id="Data View" order="1" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49391553" weight="0.17541613" />
       <window_info anchor="right" id="Coverage" order="3" side_tool="true" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09962706" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="2" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="9" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.66169417" visible="true" weight="0.20707597" />
       <window_info anchor="right" id="Data View" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="2" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="1" />
+      <window_info anchor="bottom" id="Python Console" order="2" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="4" sideWeight="0.49391553" weight="0.17541613" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09962706" />
       <window_info anchor="right" id="Database" order="0" weight="0.32978156" />
       <window_info anchor="right" id="Terminal" order="7" weight="0.27630636" />
       <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.3383058" side_tool="true" visible="true" weight="0.20707597" />
-      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="right" id="SciView" order="4" />
-      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813533" weight="0.39854318" />
       <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813533" weight="0.39854318" />
       <window_info anchor="right" id="Coverage" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="2" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,7 +424,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="11" />
+      <option name="time" value="12" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -625,10 +586,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="147" column="14" lean-forward="true" selection-start-line="147" selection-start-column="14" selection-end-line="147" selection-end-column="14" />
+          <folding>
+            <element signature="e#158#177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file:///usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pymysql/connections.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
-          <caret line="538" selection-start-line="538" selection-end-line="538" />
+        <state relative-caret-position="-313">
+          <caret line="182" column="14" lean-forward="true" selection-start-line="182" selection-start-column="14" selection-end-line="182" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -639,37 +610,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/template_solution/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="32" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="827">
-          <caret line="117" column="23" lean-forward="true" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
+        <state relative-caret-position="797">
+          <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
           <folding>
             <element signature="e#155#164#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
+    <entry file="file://$PROJECT_DIR$/src/template_solution/config.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="147" column="52" selection-start-line="147" selection-start-column="52" selection-end-line="147" selection-end-column="52" />
-          <folding>
-            <element signature="e#158#177#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="351">
+          <caret line="27" column="5" lean-forward="true" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/template_solution/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="4" lean-forward="true" selection-start-line="49" selection-start-column="4" selection-end-line="49" selection-end-column="4" />
+        <state relative-caret-position="172">
+          <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
           <folding>
             <element signature="e#156#193#0" expanded="true" />
           </folding>

@@ -24,7 +24,7 @@ def update_sql_settings():
         'port': 13306,
         'user': 'test',
         'password': 'test123456',
-        'db': 'CUser',
+        'db': 'middleresult',
     }
     return update_sql_args
 

@@ -41,17 +41,17 @@ def main():
     origin_sql_connection.connectSQL(ip=origin_sql_settings['ip'], port=origin_sql_settings['port'],
                                      user=origin_sql_settings['user'],
                                      password=origin_sql_settings['password'], db=origin_sql_settings['db'])
+    print('link target database successful!')
 # 更新数据库参数
     update_sql_connection = UpdateSQL()
     update_sql_settings = config.update_sql_settings()
     update_sql_connection.connectSQL(ip=update_sql_settings['ip'], port=update_sql_settings['port'],
                                      user=update_sql_settings['user'],
                                      password=update_sql_settings['password'], db=update_sql_settings['db'])
-
+    print('link update database successful!')
 # 获取用户 ID
     all_user_list = origin_sql_connection.get_id()
-    print(all_user_list)
-    
+
     for i in all_user_list:
         user_id_ = str(i[-1])
         user_data = origin_sql_connection.sql(user_id_)

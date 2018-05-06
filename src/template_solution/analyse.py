@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# @Time    : 2018/4/12 18:49
+# @Time    : 2018/4/1 18:49
 # @Author  : Betafringe
 # @Site    : 
 # @File    : operate.py
@@ -9,6 +9,7 @@ import pandas as pd
 import datetime
 import math
 import random
+
 
 class Pre:
     def preprocessing_pd(self, df):
@@ -52,7 +53,7 @@ class ComputeCredit(object):
         self.lvl = lvl
         self.count = count
         self.sex = sex
-        self.landsize = landsize
+        self.land_size = landsize
         self.sale_income = sale_income
         self.out_poverty = out_poverty
         self.industrial_scale = industrial_scale
