@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f42babbf-533c-4add-bda9-6c4cd98b8b66" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/template_solution/analyse.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/analyse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template_solution/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/template_solution/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/template_solution/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +17,7 @@
     <SUITE FILE_PATH="coverage/__CreditAnalyse$compute_credit.coverage" NAME="compute_credit Coverage Results" MODIFIED="1524325175938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$randomforest_test.coverage" NAME="randomforest_test Coverage Results" MODIFIED="1522656281494" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/function_test" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$cluster_t.coverage" NAME="cluster_t Coverage Results" MODIFIED="1523280075394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Jupyter_ipynb" />
-    <SUITE FILE_PATH="coverage/__CreditAnalyse$main.coverage" NAME="main Coverage Results" MODIFIED="1525616379318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
+    <SUITE FILE_PATH="coverage/__CreditAnalyse$main.coverage" NAME="main Coverage Results" MODIFIED="1525662478108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$loaddata_function_test.coverage" NAME="loaddata_function_test Coverage Results" MODIFIED="1525423414551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/template_solution" />
     <SUITE FILE_PATH="coverage/CreditAnalyse$test_funciton.coverage" NAME="test_funciton Coverage Results" MODIFIED="1522157206413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CreditPovertyAnalyse/function_test" />
     <SUITE FILE_PATH="coverage/__CreditAnalyse$config.coverage" NAME="config Coverage Results" MODIFIED="1525422753828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Jupyter_ipynb" />
@@ -36,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-229">
-              <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
+            <state relative-caret-position="423">
+              <caret line="149" column="32" lean-forward="true" selection-start-line="149" selection-start-column="32" selection-end-line="149" selection-end-column="32" />
               <folding>
                 <element signature="e#155#164#0" expanded="true" />
               </folding>
@@ -48,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/template_solution/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+            <state relative-caret-position="235">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
                 <element signature="e#156#193#0" expanded="true" />
               </folding>
@@ -72,8 +74,8 @@
       <file leaf-file-name="analyse.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
+            <state relative-caret-position="69">
+              <caret line="149" column="69" lean-forward="true" selection-start-line="149" selection-start-column="69" selection-end-line="149" selection-end-column="69" />
               <folding>
                 <element signature="e#158#177#0" expanded="true" />
               </folding>
@@ -118,10 +120,10 @@
         <option value="$PROJECT_DIR$/src/template_solution/load_data.py" />
         <option value="$PROJECT_DIR$/src/template_solution/README.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/template_solution/main.py" />
-        <option value="$PROJECT_DIR$/src/template_solution/data.py" />
         <option value="$PROJECT_DIR$/src/template_solution/config.py" />
+        <option value="$PROJECT_DIR$/src/template_solution/main.py" />
         <option value="$PROJECT_DIR$/src/template_solution/analyse.py" />
+        <option value="$PROJECT_DIR$/src/template_solution/data.py" />
       </list>
     </option>
   </component>
@@ -364,20 +366,19 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.3383058" side_tool="true" weight="0.20707597" />
+      <window_info anchor="bottom" id="Event Log" order="0" sideWeight="0.33888888" side_tool="true" visible="true" weight="0.24121211" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.66169417" weight="0.24121211" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.6611111" visible="true" weight="0.24121211" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.264308" />
       <window_info anchor="bottom" id="Python Console" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="12" visible="true" weight="0.38060606" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4970646" visible="true" weight="0.15208334" />
+      <window_info anchor="bottom" id="Terminal" order="12" weight="0.3030303" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.74121404" visible="true" weight="0.15208334" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" weight="0.32978156" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.5029354" side_tool="true" visible="true" weight="0.15208334" />
+      <window_info id="Structure" order="1" sideWeight="0.25878593" side_tool="true" visible="true" weight="0.15208334" />
       <window_info anchor="bottom" id="Debug" order="6" sideWeight="0.49813533" weight="0.39800996" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="6" weight="0.25" />
@@ -604,26 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="99" column="59" lean-forward="true" selection-start-line="99" selection-start-column="59" selection-end-line="99" selection-end-column="59" />
-          <folding>
-            <element signature="e#155#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
-          <folding>
-            <element signature="e#158#177#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/template_solution/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -631,12 +612,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/template_solution/analyse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="149" column="69" lean-forward="true" selection-start-line="149" selection-start-column="69" selection-end-line="149" selection-end-column="69" />
+          <folding>
+            <element signature="e#158#177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/template_solution/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+        <state relative-caret-position="235">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="e#156#193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/template_solution/data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="149" column="32" lean-forward="true" selection-start-line="149" selection-start-column="32" selection-end-line="149" selection-end-column="32" />
+          <folding>
+            <element signature="e#155#164#0" expanded="true" />
           </folding>
         </state>
       </provider>

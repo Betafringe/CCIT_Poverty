@@ -148,8 +148,8 @@ def normal_distribution(X):
 def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
     single_user = ComputeCredit(per, year, age, income, lvl,
                                 count, sex, landsize, sale_income, out_poverty, industrial_scale)
-    character = single_user.per_part(0.2*0.1) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
-                + single_user.lvl_part(0.2*0.1) + single_user.sex_part(0.2*0.15)
+    character = single_user.per_part(0.2*0.15) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
+                + single_user.lvl_part(0.2*0.15) + single_user.sex_part(0.2*0.15)
 
     appointment = single_user.income_part(0.07) + single_user.sex_part(0.03) + 0.35
 
@@ -159,7 +159,7 @@ def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income,
 
     relations = single_user.sex_part(0.01) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.35
 
-    if character == 1 or appointment == 1 or history == 1 or stickiness == 1 or relations == 1:
+    if character >= 1 or appointment >= 1 or history >= 1 or stickiness >= 1 or relations >= 1:
         character, appointment, history, stickiness, relations = 0.7, 0.6, 0.6, 0.6, 0.5
 
     random_bias = int(random.randint(5, 50))

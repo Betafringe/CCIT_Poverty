@@ -13,8 +13,11 @@ import config
 '''
 include LookupSQL and updateSQL class
 '''
+
+
 class LookupSQL:
     def __init__(self):
+        print('link target database successful!')
         self.connect = None
         self.config = None
 
@@ -110,8 +113,10 @@ class LookupSQL:
 
 class UpdateSQL:
     def __init__(self):
+        print('link update database successful!')  # log
         self.connect = None
         self.config = None
+        self.count = 0
 
     def connectSQL(self, ip=None, port=None, user=None, password=None, db=None):
         if self.config == None:
@@ -132,9 +137,10 @@ class UpdateSQL:
                  VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % (id_, name_, score_, character_, appointment_,
                                                                    history_, stickiness_, relations_)
         cur = self.connect.cursor()
-
         try:
-            print(cur.execute(sql))
+            # self.count += 1
+            # if self.count % 100 == 0:
+            cur.execute(sql)
             # 提交到数据库执行
             self.connect.commit()
         except Exception as e:
@@ -142,6 +148,9 @@ class UpdateSQL:
             print(e)
             self.connect.rollback()
             self.connect.close()
+
+    def data_commit(self, ):
+        pass
 
     def __del__(self):
         if self.connect is not None:
