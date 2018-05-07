@@ -49,7 +49,7 @@ def main():
                                      password=update_sql_settings['password'], db=update_sql_settings['db'])
 # 获取用户 ID
     all_user_list = origin_sql_connection.get_id()
-
+    num_all_user_list = len(all_user_list)
     for i in all_user_list:
         user_id_ = str(i[-1])
         user_data = origin_sql_connection.sql(user_id_)
@@ -57,9 +57,9 @@ def main():
         after_data = init_add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
              user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
         print('score:', after_data)
-        save_template(item=user_data, compute=after_data)
-        update_sql_connection.insert_sql(int(user_id_), user_data[0], after_data[0], after_data[1], after_data[2],
-                    after_data[3], after_data[4], after_data[5])
+        update_sql_connection.batch_insert_sql(int(user_id_), user_data[0], after_data[0], after_data[1], after_data[2],
+                                                after_data[3], after_data[4], after_data[5],
+                                               is_batch=True, batch_size=77, count_all_users=num_all_user_list)
     stoptime = datetime.datetime.now()
     print("used time:", stoptime-startime)
 

@@ -148,7 +148,7 @@ def normal_distribution(X):
 def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
     single_user = ComputeCredit(per, year, age, income, lvl,
                                 count, sex, landsize, sale_income, out_poverty, industrial_scale)
-    character = single_user.per_part(0.2*0.15) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
+    character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
                 + single_user.lvl_part(0.2*0.15) + single_user.sex_part(0.2*0.15)
 
     appointment = single_user.income_part(0.07) + single_user.sex_part(0.03) + 0.35

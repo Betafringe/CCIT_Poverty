@@ -102,8 +102,6 @@ class LookupSQL:
             data = cur.fetchall()
         except (TypeError, pymysql.err.InternalError) as e:
             print(e)
-        finally:
-             pass
         return data
 
     def __del__(self):
@@ -113,13 +111,13 @@ class LookupSQL:
 
 class UpdateSQL:
     def __init__(self):
-        print('link update database successful!')  # log
         self.connect = None
         self.config = None
         self.count = 0
+        self.cur = None
 
     def connectSQL(self, ip=None, port=None, user=None, password=None, db=None):
-        if self.config == None:
+        if self.config is None:
             self.config = {
             'host': ip,
             'port': port,  # MySQL默认端口
@@ -129,37 +127,91 @@ class UpdateSQL:
             'charset': 'utf8',  #数据库编码
              }
         self.connect = pymysql.connect(**self.config)
+        print('link update database successful!')  # log
 
-    def insert_sql(self, id_, name_, score_, character_, appointment_, history_, stickiness_, relations_):
+    def insert_sql(self, id_, name_, score_, character_,
+                   appointment_, history_, stickiness_, relations_, is_batch=True, batch_size=500):
         # SQL 插入语句
-        sql = """INSERT INTO `credit_user_info` (`id`,
-                 `name`, `score`,`character`, `appointment`, `history`, `stickiness`, `relations`)
-                 VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % (id_, name_, score_, character_, appointment_,
-                                                                   history_, stickiness_, relations_)
-        cur = self.connect.cursor()
+        sql = """INSERT INTO `credit_user_info` (`id`, `name`, `score`,`character`, `appointment`, `history`, 
+                 `stickiness`, `relations`)VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % \
+              (id_, name_, score_, character_, appointment_, history_, stickiness_, relations_)
+        if self.cur is None:
+            self.cur = self.connect.cursor()
+            # self.connect.autocommit(1)
         try:
-            # self.count += 1
-            # if self.count % 100 == 0:
-            cur.execute(sql)
-            # 提交到数据库执行
-            self.connect.commit()
+            self.cur.execute(sql)
+            self.count += 1
+            print(self.count)
+            if is_batch:
+                if self.count % batch_size == 0:
+                # 提交到数据库执行
+                    self.connect.commit()
+                    print("commit")
+                else:
+                    print("uncommit")
         except Exception as e:
             # 如果发生错误则回滚
             print(e)
             self.connect.rollback()
             self.connect.close()
 
-    def data_commit(self, ):
-        pass
-
-    def __del__(self):
-        if self.connect is not None:
+    def batch_insert_sql(self, id_, name_, score_, character_, appointment_, history_, stickiness_, relations_,
+                         is_batch=True, batch_size=500, count_all_users=0):
+        # SQL 插入语句
+        sql = """INSERT INTO `credit_user_info` (`id`, `name`, `score`,`character`, `appointment`, `history`, 
+                 `stickiness`, `relations`)VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % \
+              (id_, name_, score_, character_, appointment_, history_, stickiness_, relations_)
+        if self.cur is None:
+            self.cur = self.connect.cursor()
+            # self.connect.autocommit(1)
+        try:
+            self.cur.execute(sql)
+            self.count += 1
+            print(self.count)
+            if is_batch:
+                if self.count % batch_size == 0:
+                # 提交到数据库执行
+                    self.connect.commit()
+                    print("commit")
+                else:
+                    print("waiting to commit, hold")
+                    if self.count >= count_all_users-batch_size:
+                        try:
+                            self.connect.commit()
+                        except Exception as e:
+                            self.connect.rollback()
+                            self.connect.close
+                        finally:
+                            pass
+        except Exception as e:
+            # 如果发生错误则回滚
+            print(e)
+            self.connect.rollback()
             self.connect.close()
+class UpdateCredit():
+    def __init__(self):
+        self.connect = None
+        self.config = None
+    def __init__(self):
+        self.connect = None
+        self.config = None
+        self.cur = None
+    def connectSQL(self, ip=None, port=None, user=None, password=None, db=None):
+        if self.config is None:
+            self.config = {
+                'host': ip,
+                'port': port,  # MySQL默认端口
+                'user': user,  # mysql默认用户名
+                'passwd': password,
+                'db': db,  # 数据库
+                'charset': 'utf8',  # 数据库编码
+            }
+        self.connect = pymysql.connect(**self.config)
+        print('link update database successful!')  # log
 
-
-'''
-test function code
-'''
+# '''
+# test function code
+# '''
 # select_test = LookupSQL()
 # select_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
 # select_test.sql('1313985')
