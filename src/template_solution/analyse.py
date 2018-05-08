@@ -3,9 +3,8 @@
 # @Time    : 2018/4/1 18:49
 # @Author  : Betafringe
 # @Site    : 
-# @File    : operate.py
+# @File    : analyse.py
 # @Software: PyCharm
-import pandas as pd
 import datetime
 import math
 import random
@@ -164,10 +163,26 @@ def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income,
 
     random_bias = int(random.randint(5, 50))
     total_credit = int((character + appointment + history + stickiness + relations)*850/5) + random_bias
-
-
     return total_credit, character, appointment, history, stickiness, relations
 
 
-def update(user_id, para):
-    pass
+def update():
+    single_user = ComputeCredit(per, year, age, income, lvl,
+                                count, sex, landsize, sale_income, out_poverty, industrial_scale)
+    character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
+                + single_user.lvl_part(0.2*0.15) + single_user.sex_part(0.2*0.15) + 0.02
+
+    appointment = single_user.income_part(0.07) + single_user.sex_part(0.03) + 0.35
+
+    history = single_user.year_part(0.6*0.5) + single_user.income_part(0.2*0.5)
+
+    stickiness = single_user.count_part(0.03) + single_user.year_part(0.04) + single_user.count_part(0.03) + 0.38
+
+    relations = single_user.sex_part(0.01) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.35
+
+    if character >= 1 or appointment >= 1 or history >= 1 or stickiness >= 1 or relations >= 1:
+        character, appointment, history, stickiness, relations = 0.7, 0.6, 0.6, 0.6, 0.5
+    else:
+        pass
+    return character, appointment, history, stickiness, relations
+

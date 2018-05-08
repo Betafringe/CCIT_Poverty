@@ -50,16 +50,20 @@ def main():
 # 获取用户 ID
     all_user_list = origin_sql_connection.get_id()
     num_all_user_list = len(all_user_list)
-    for i in all_user_list:
-        user_id_ = str(i[-1])
-        user_data = origin_sql_connection.sql(user_id_)
-        print('user_info:', user_data)
-        after_data = init_add_all(user_data[1], user_data[2], user_data[3], user_data[4], user_data[5], user_data[6],
-             user_data[7], user_data[8], user_data[9], user_data[10], user_data[11])
-        print('score:', after_data)
-        update_sql_connection.batch_insert_sql(int(user_id_), user_data[0], after_data[0], after_data[1], after_data[2],
-                                                after_data[3], after_data[4], after_data[5],
-                                               is_batch=True, batch_size=77, count_all_users=num_all_user_list)
+    print("USER ID INFO NUM: ", num_all_user_list)
+    user_data = origin_sql_connection.batch_lookup_sql(batch_size=1000)
+
+    for batch in user_data:
+        time2 = datetime.datetime.now()
+        print("load time", time2 - startime)
+        for item in batch:
+            # print(item)
+            after_data = init_add_all(item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],
+            item[10], item[11], item[12])
+            print(after_data)
+            update_sql_connection.batch_insert_sql(int(item[0]), item[1], after_data[0], after_data[1],
+                                                   after_data[2], after_data[3], after_data[4], after_data[5],
+                                                   is_batch=True, batch_size=500, count_all_users=num_all_user_list)
     stoptime = datetime.datetime.now()
     print("used time:", stoptime-startime)
 
