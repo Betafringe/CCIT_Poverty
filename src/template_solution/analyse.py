@@ -10,39 +10,6 @@ import math
 import random
 
 
-class Pre:
-    def preprocessing_pd(self, df):
-        df_drop_na = df.drop(['householder_name', 'address', 'city', 'city_id', 'county', 'town', 'village_name',
-                              'phone_num', 'helper_number', 'input_user', 'input_time', 'city_recorder',
-        'county_recorder', 'helper', 'real_time', 'check_status'], axis=1)
-
-        df_income = df_drop_na[df_drop_na['income'] < 100000]
-        df_ = df_income[df_income['year'] < datetime.datetime.now().year]
-        ID_card = df_['ID_card']
-        ID_list = []
-        for item in ID_card:
-            sl_item = datetime.datetime.now().year - int(item[6:10])
-            ID_list.append(sl_item)
-        df_.loc[:, 'ID_card'] = ID_list
-        income_mean = df_['income'].mean()
-        df_['income'] = df_.loc[:, 'income'].replace(0, income_mean)
-        df_['out_poverty'] = df_['out_poverty'].replace('否', '0')
-        df_['out_poverty'] = df_['out_poverty'].replace('是', '1')
-        df_['level'] = df_['level'].replace('一般农户', '0')
-        df_['level'] = df_['level'].replace('低保户', '0')
-        df_['level'] = df_['level'].replace('低保贫苦户', '0')
-        df_['level'] = df_['level'].replace('县级', '1')
-        df_['level'] = df_['level'].replace('区级', '1')
-        df_['level'] = df_['level'].replace('县', '1')
-        df_['level'] = df_['level'].replace('县级示范', '2')
-        df_['level'] = df_['level'].replace('省级', '3')
-        df_['level'] = df_['level'].replace('省', '3')
-        df_['level'] = df_['level'].replace('省级示范', '3')
-        df_['level'] = df_['level'].replace('四川省', '3')
-        df_['level'] = df_['level'].replace('国家级', '4')
-        return df_
-
-
 class ComputeCredit(object):
     def __init__(self, per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
         self.per = per
@@ -134,6 +101,12 @@ class ComputeCredit(object):
             value = 10
         return value*out_poverty_weights
 
+    def industry_scale(self, industry_weights):
+        if self.industrial_scale == 0 :
+            value = 2
+        else:
+            value = 8
+        return value
 
 def sigmoid(X):
     return 1.0 / (1 + math.exp(-X))
@@ -166,7 +139,7 @@ def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income,
     return total_credit, character, appointment, history, stickiness, relations
 
 
-def update():
+def update(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
     single_user = ComputeCredit(per, year, age, income, lvl,
                                 count, sex, landsize, sale_income, out_poverty, industrial_scale)
     character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
@@ -176,7 +149,8 @@ def update():
 
     history = single_user.year_part(0.6*0.5) + single_user.income_part(0.2*0.5)
 
-    stickiness = single_user.count_part(0.03) + single_user.year_part(0.04) + single_user.count_part(0.03) + 0.38
+    linear = 0.001
+    stickiness = single_user.count_part(0.03) + single_user.year_part(0.04) + single_user.count_part(0.03) + 0.38 + linear
 
     relations = single_user.sex_part(0.01) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.35
 
@@ -184,5 +158,7 @@ def update():
         character, appointment, history, stickiness, relations = 0.7, 0.6, 0.6, 0.6, 0.5
     else:
         pass
-    return character, appointment, history, stickiness, relations
+    total_credit = int((character + appointment + history + stickiness + relations)*850/5) + 10
+
+    return total_credit, character, appointment, history, stickiness, relations
 

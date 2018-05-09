@@ -82,7 +82,9 @@
 	<key>queryFavorites</key>
 	<array/>
 	<key>queryHistory</key>
-	<array/>
+	<array>
+		<string>TRUNCATE TABLE credit_user_info</string>
+	</array>
 	<key>rdbms_type</key>
 	<string>mysql</string>
 	<key>rdbms_version</key>

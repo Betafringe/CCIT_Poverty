@@ -12,7 +12,7 @@ import datetime
 import config
 
 
-def save_template(item, compute):
+def sql_config():
     origin_data = []
     after_data = []
     origin_data.append(item)
