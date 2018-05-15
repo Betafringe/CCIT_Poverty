@@ -45,11 +45,12 @@ class LookupSQL:
 
     def batch_lookup_sql(self, batch_size=1000):
         '''
-        :param lookup_id:
-        :return: list
+
+        :param batch_size:
+        :return:
         '''
 
-        if self.connect is None:
+        if self.connect is None and self.connect.ping() is False:
             self.connectSQL()
         cur = self.connect.cursor()
         # 执行sql语句
@@ -103,41 +104,21 @@ class UpdateSQL:
         self.connect = pymysql.connect(**self.config)
         print('link update database successful!')  # log
 
-    def single_insert_sql(self, id_, name_, score_, character_,
-                   appointment_, history_, stickiness_, relations_, is_batch=True, batch_size=500):
-        # SQL 插入语句
-        sql = """INSERT INTO `credit_user_info` (`id`, `name`, `score`,`character`, `appointment`, `history`, 
-                 `stickiness`, `relations`)VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % \
-              (id_, name_, score_, character_, appointment_, history_, stickiness_, relations_)
-        if self.cur is None:
-            self.cur = self.connect.cursor()
-            # self.connect.autocommit(1)
-        try:
-            self.cur.execute(sql)
-            self.count += 1
-            print(self.count)
-            if is_batch:
-                if self.count % batch_size == 0:
-                # 提交到数据库执行
-                    self.connect.commit()
-                    # print("commit")
-                else:
-                    pass
-        except Exception as e:
-            # 如果发生错误则回滚
-            print(e)
-            self.connect.rollback()
-            self.connect.close()
-
     def batch_insert_sql(self, id_, name_, score_, character_, appointment_, history_, stickiness_, relations_,
                          is_batch=True, batch_size=500, count_all_users=0):
+
+        if self.connect is None and self.connect.ping() is False:
+            self.conncetSQL()
+        else:
+            if self.cur is None:
+                self.cur = self.connect.cursor()
+            else:
+                pass
         # SQL 插入语句
         sql = """INSERT INTO `credit_user_info` (`id`, `name`, `score`,`character`, `appointment`, `history`, 
                  `stickiness`, `relations`)VALUES (%d, \"%s\", %f, %f, %f, %f, %f, %f)""" % \
               (id_, name_, score_, character_, appointment_, history_, stickiness_, relations_)
-        if self.cur is None:
-            self.cur = self.connect.cursor()
-            # self.connect.autocommit(1)
+
         try:
             if self.cur is None:
                 print("log info： cur is None ")
@@ -248,7 +229,7 @@ def origin_data_to_format(single_data):
         year = datetime.datetime.now().year
 
     id_card = single_data[4]
-    if len(id_card) == 18 or 15:
+    if id_card is str and id_card[6:10].isdigit and len(id_card) == 18 or 15:
         sex = get_sex(id_card[-2])
         age = datetime.datetime.now().year - int(id_card[6:10])
     else:
@@ -290,18 +271,19 @@ def origin_data_to_format(single_data):
         industrial_scale = industrial_scale
     else:
         industrial_scale = 0
+
     user_info_handle.append((id_, name, per_num, year, age, income, lvl, count, sex, land_size, sale_income,
                              out_poverty, industrial_scale))
     return user_info_handle
 
-# '''
-# test function code
-# '''
+'''
+test function code
+'''
 # select_test = LookupSQL()
 # select_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
 # test = select_test.batch_lookup_sql(batch_size=100)
 # for i in test:
 #     print(i)
-# # insert_test = UpdateSQL()
-# # insert_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
-# # insert_test.insert_sql(1, 'abcd', 299, 1, 1, 1, 1, 1)
+# insert_test = UpdateSQL()
+# insert_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+# insert_test.batch_insert_sql(12312, 'abcd', 299, 1, 1, 1, 1, 1)

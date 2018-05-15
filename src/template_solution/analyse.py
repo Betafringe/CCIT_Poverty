@@ -53,9 +53,9 @@ class ComputeCredit(object):
         return value*age_weights
 
     def income_part(self, income_weights):
-        if self.income < 1000:
+        if self.income < 1500:
             value = 1
-        elif 1000 <= self.income < 4000:
+        elif 1500 <= self.income < 4000:
             value = 3
         elif 3500 <= self.income < 100000:
             value = 4
@@ -66,12 +66,12 @@ class ComputeCredit(object):
     def lvl_part(self, lvl_weights):
         if self.lvl == "一般农户" or "低保户" or "低保贫苦户":
             value = 1
-        elif self.lvl == "县级" or "区级" or "县":
+        elif self.lvl == "县级" or "区级" or "县" or "县级示范" or "市级":
             value = 2
-        elif self.lvl == "省级" or "省级示范" or "省":
-            value = 3
-        else:
+        elif self.lvl == "省级" or "省级示范" or "省" or "四川省":
             value = 4
+        else:
+            value = 3
         return value*lvl_weights
 
     def count_part(self, count_weights):
@@ -89,7 +89,11 @@ class ComputeCredit(object):
         return value*sex_weights
 
     def landsize(self, landsize_weights):
-        pass
+        if self.land_size == 0:
+            value = 0
+        else:
+            value = 1
+        return value * landsize_weights
 
     def sale_income(self, sale_income_weights):
         pass
@@ -106,7 +110,7 @@ class ComputeCredit(object):
             value = 2
         else:
             value = 8
-        return value
+        return value*industry_weights
 
 def sigmoid(X):
     return 1.0 / (1 + math.exp(-X))

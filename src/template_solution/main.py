@@ -52,12 +52,11 @@ def main():
     num_all_user_list = len(all_user_list)
     print("USER ID INFO NUM: ", num_all_user_list)
     user_data = origin_sql_connection.batch_lookup_sql(batch_size=1000)
-
     for batch in user_data:
         time2 = datetime.datetime.now()
         print("load time", time2 - startime)
         for item in batch:
-            # print(item)
+            print(item)
             after_data = init_add_all(item[2], item[3], item[4], item[5], item[6], item[7], item[8], item[9],
             item[10], item[11], item[12])
             print(after_data)
