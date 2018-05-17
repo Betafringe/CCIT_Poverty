@@ -9,22 +9,22 @@
 
 def origin_sql_settings():
     origin_sql_args = {
-        'ip': '120.78.129.209',
-        'port': 13306,
-        'user': 'test',
-        'password': 'test123456',
-        'db': 'CUser',
+        'ip': '172.16.254.71',
+        'port': 3306,
+        'user': 'fpjr',
+        'password': '123456',
+        'db': 'poor',
     }
     return origin_sql_args
 
 
 def update_sql_settings():
     update_sql_args = {
-        'ip': '120.78.129.209',
-        'port': 13306,
-        'user': 'test',
-        'password': 'test123456',
-        'db': 'middleresult',
+        'ip': '172.16.254.71',
+        'port': 3306,
+        'user': 'fpjr',
+        'password': '123456',
+        'db': 'fpjr',
     }
     return update_sql_args
 

@@ -107,7 +107,7 @@ class UpdateSQL:
     def batch_insert_sql(self, id_, name_, score_, character_, appointment_, history_, stickiness_, relations_,
                          is_batch=True, batch_size=500, count_all_users=0):
 
-        if self.connect is None and self.connect.ping() is False:
+        if self.connect is None or self.connect.ping() is False:
             self.conncetSQL()
         else:
             if self.cur is None:
@@ -143,7 +143,7 @@ class UpdateSQL:
                         finally:
                             pass
         except Exception as e:
-            print(e)
+            print(e, "log info")
         finally:
             pass
 
@@ -228,9 +228,9 @@ def origin_data_to_format(single_data):
     else:
         year = datetime.datetime.now().year
 
-    id_card = single_data[4]
+    id_card = single_data[4].strip()
     if id_card is str and id_card[6:10].isdigit and len(id_card) == 18 or 15:
-        sex = get_sex(id_card[-2])
+        sex = get_sex(id_card[16])
         age = datetime.datetime.now().year - int(id_card[6:10])
     else:
         sex = 0

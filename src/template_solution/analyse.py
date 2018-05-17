@@ -55,7 +55,7 @@ class ComputeCredit(object):
     def income_part(self, income_weights):
         if self.income < 1500:
             value = 1
-        elif 1500 <= self.income < 4000:
+        elif 1500 <= self.income < 3500:
             value = 3
         elif 3500 <= self.income < 100000:
             value = 4
@@ -106,7 +106,7 @@ class ComputeCredit(object):
         return value*out_poverty_weights
 
     def industry_scale(self, industry_weights):
-        if self.industrial_scale == 0 :
+        if self.industrial_scale == 0:
             value = 2
         else:
             value = 8

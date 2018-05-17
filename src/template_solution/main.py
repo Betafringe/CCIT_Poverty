@@ -41,17 +41,19 @@ def main():
     origin_sql_connection.connectSQL(ip=origin_sql_settings['ip'], port=origin_sql_settings['port'],
                                      user=origin_sql_settings['user'],
                                      password=origin_sql_settings['password'], db=origin_sql_settings['db'])
-# 更新数据库参数
+
+# 获取用户 ID
+    all_user_list = origin_sql_connection.get_id()
+    num_all_user_list = len(all_user_list)
+    print("USER ID INFO NUM: ", num_all_user_list)
+    user_data = origin_sql_connection.batch_lookup_sql(batch_size=10000)
+    print(user_data)
+    # 更新数据库参数
     update_sql_connection = UpdateSQL()
     update_sql_settings = config.update_sql_settings()
     update_sql_connection.connectSQL(ip=update_sql_settings['ip'], port=update_sql_settings['port'],
                                      user=update_sql_settings['user'],
                                      password=update_sql_settings['password'], db=update_sql_settings['db'])
-# 获取用户 ID
-    all_user_list = origin_sql_connection.get_id()
-    num_all_user_list = len(all_user_list)
-    print("USER ID INFO NUM: ", num_all_user_list)
-    user_data = origin_sql_connection.batch_lookup_sql(batch_size=1000)
     for batch in user_data:
         time2 = datetime.datetime.now()
         print("load time", time2 - startime)
