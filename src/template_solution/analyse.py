@@ -11,7 +11,8 @@ import random
 
 
 class ComputeCredit(object):
-    def __init__(self, per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
+    def __init__(self, per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale,
+                 kinds, kinds_num):
         self.per = per
         self.year = year
         self.age = age
@@ -23,6 +24,8 @@ class ComputeCredit(object):
         self.sale_income = sale_income
         self.out_poverty = out_poverty
         self.industrial_scale = industrial_scale
+        self.kinds = kinds
+        self.kinds_num = kinds_num
 
     def per_part(self, per_weights):
         if self.per < 3:
@@ -112,6 +115,38 @@ class ComputeCredit(object):
             value = 8
         return value*industry_weights
 
+    def is_kind(self, kind_weights):
+        if self.kinds == '生猪':
+            if self.kinds_num < 30:
+                kinds_value = 1
+            elif 30 <= self.kinds_num < 100:
+                kinds_value = 3
+            else:
+                kinds_value = 5
+        elif self.kinds =='牛羊':
+            if self.kinds_num < 20:
+                kinds_value = 1
+            elif  20 <=self.kinds_num <50:
+                kinds_value = 3
+            else:
+                kinds_value = 5
+        elif self.kinds == '蔬菜' or '水稻' or '玉米' or '果树':
+            if self.kinds_num < 1.8:
+                kinds_value = 1
+            else:
+                kinds_value = 3
+        else:
+            if self.kinds_num < 80:
+                kinds_value = 1
+            else:
+                kinds_value = 3
+
+        kinds_dic = {'生猪':6,'牛羊':8,'家禽':5,'水稻':5,'玉米':5,'蔬菜':4,'果树':5,'0':0,'1':0}  
+        baseline_none_key = 10
+        value = kinds_dic[self.kinds] * kinds_value / 5 + baseline_none_key
+        return value*kind_weights
+
+
 def sigmoid(X):
     return 1.0 / (1 + math.exp(-X))
 
@@ -121,11 +156,12 @@ def normal_distribution(X):
     return math.exp(1) ** (-(X ** 2) / 2) * (1.0 / 2 * PI) ** 0.5
 
 
-def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale):
+def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income, out_poverty, industrial_scale,
+                 kinds, kinds_num):
     single_user = ComputeCredit(per, year, age, income, lvl,
-                                count, sex, landsize, sale_income, out_poverty, industrial_scale)
-    character = single_user.per_part(0.2*0.2) + single_user.income_part(0.2*0.2) + single_user.age_part(0.2*0.2) \
-                + single_user.lvl_part(0.2*0.15) + single_user.sex_part(0.2*0.15)
+                                count, sex, landsize, sale_income, out_poverty, industrial_scale, kinds, kinds_num)
+    character = single_user.per_part(0.03) + single_user.income_part(0.015) + single_user.age_part(0.015) \
+                + single_user.lvl_part(0.01) + single_user.sex_part(0.01) + single_user.is_kind(0.02)
 
     appointment = single_user.income_part(0.07) + single_user.sex_part(0.03) + 0.35
 
@@ -133,7 +169,7 @@ def init_add_all(per, year, age, income, lvl, count, sex, landsize, sale_income,
 
     stickiness = single_user.count_part(0.03) + single_user.year_part(0.04) + single_user.count_part(0.03) + 0.35
 
-    relations = single_user.sex_part(0.01) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.35
+    relations = single_user.sex_part(0.02) + single_user.per_part(0.06) + single_user.income_part(0.02) + 0.32
 
     if character >= 1 or appointment >= 1 or history >= 1 or stickiness >= 1 or relations >= 1:
         character, appointment, history, stickiness, relations = 0.7, 0.6, 0.6, 0.6, 0.5
@@ -165,4 +201,9 @@ def update(per, year, age, income, lvl, count, sex, landsize, sale_income, out_p
     total_credit = int((character + appointment + history + stickiness + relations)*850/5) + 10
 
     return total_credit, character, appointment, history, stickiness, relations
+
+
+'''
+test func code
+'''
 

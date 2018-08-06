@@ -6,7 +6,7 @@
 # @File    : data.py
 # @Software: PyCharm
 import os
-import pymysql.cursors
+# import pymysql.cursors
 import pymysql
 import datetime
 import config
@@ -52,20 +52,25 @@ class LookupSQL:
 
         if self.connect is None and self.connect.ping() is False:
             self.connectSQL()
-        cur = self.connect.cursor()
+        cur = self.connect.cursor(pymysql.cursors.SSCursor)
         # 执行sql语句
         try:
-            cur.execute('select * from lead_poor ')
+            cur.execute('select * from lead_poor')
             dataset = cur.fetchmany(batch_size)
         except (TypeError, pymysql.err.InternalError) as e:
             print(e)
         finally:
             pass
 
-        while(dataset is not None and dataset != ()):
+        while(dataset is not None and dataset != []):
+            temp_list = []
             for item in dataset:
                 origin_to_format_data = origin_data_to_format(item)
-                yield origin_to_format_data
+                temp_list.append(origin_to_format_data)
+            # print("log yield")
+            yield temp_list
+
+            #print(type(dataset), dataset)
             dataset = cur.fetchmany(batch_size)
         pass
 
@@ -193,8 +198,22 @@ class UpdateCredit:
             pass
 
 
+class DirectGetData:
+    def handle_rawdata(self, is_list):
+        if is_list is None:
+            print('log data loss')
+        else:
+            try:
+                user_info = origin_data_to_format(is_list)
+            finally:
+                pass
+        return user_info
+
+    def save_data(self):
+        pass
+
+
 def origin_data_to_format(single_data):
-    user_info_handle = []
 
     def get_sex(x):
         if int(x) % 2 == 1:
@@ -229,9 +248,14 @@ def origin_data_to_format(single_data):
         year = datetime.datetime.now().year
 
     id_card = single_data[4].strip()
-    if id_card is str and id_card[6:10].isdigit and len(id_card) == 18 or 15:
-        sex = get_sex(id_card[16])
-        age = datetime.datetime.now().year - int(id_card[6:10])
+    if (type(id_card) is str) and (id_card[6:10].isdigit()) and (len(id_card) == 18 or 15):
+        try:
+            sex = get_sex(id_card[-2])
+            age = datetime.datetime.now().year - int(id_card[6:10])
+        except IndexError as e:
+            print(e)
+        finally:
+            pass
     else:
         sex = 0
         age = 20
@@ -272,18 +296,34 @@ def origin_data_to_format(single_data):
     else:
         industrial_scale = 0
 
-    user_info_handle.append((id_, name, per_num, year, age, income, lvl, count, sex, land_size, sale_income,
-                             out_poverty, industrial_scale))
+    kinds = single_data[-2]
+    if kinds is not None:
+        kinds = kinds
+    else:
+        kinds = '1'
+
+    kinds_num = single_data[-1]
+    if kinds_num is not None:
+        kinds_num = kinds_num
+    else:
+        kinds_num = 0
+
+    user_info_handle = (id_, name, per_num, year, age, income, lvl, count, sex, land_size, sale_income,
+                             out_poverty, industrial_scale, kinds, kinds_num)
     return user_info_handle
+
 
 '''
 test function code
 '''
 # select_test = LookupSQL()
-# select_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
+# select_test.connectSQL(ip='192.168.56.142', port=3306, user='poor', password='password_poor', db='initial')
 # test = select_test.batch_lookup_sql(batch_size=100)
 # for i in test:
 #     print(i)
 # insert_test = UpdateSQL()
 # insert_test.connectSQL(ip='120.78.129.209', port=13306, user='test', password='test123456', db='CUser')
 # insert_test.batch_insert_sql(12312, 'abcd', 299, 1, 1, 1, 1, 1)
+testdata_list = [571526, 'abc', 2, '2016', '512927196902212917', '省级', '', '', '', '', '', '', '', '南充市 仪陇县 金城镇 罩板村', 511300000000, '南充市', 511324000000, '仪陇县', 511324100000, '金城镇', 511324100205, '罩板村', '', '', '', '', '2017', '', '', '', 0, '', '否', '', '', 0, 1, '', '', '', '']
+directdata_test = DirectGetData()
+directdata_test.handle_rawdata(testdata_list)
